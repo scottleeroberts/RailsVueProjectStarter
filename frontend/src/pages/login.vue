@@ -3,8 +3,11 @@
   .column.is-4.is-offset-4
     form(@submit.prevent="login")
       .local-logo
-        span.icon
-          i.fa.fa-laptop.fa-5x
+        img(alt="Vue logo" src="../assets/main-banner.png")
+        p.local-slogan
+          span.local-green Charter
+          | &nbsp;
+          span.local-blue Quotes
       .notification.is-danger(v-if="error")
         span {{error}}
         button.delete(type="button" @click.prevent="error = null")
@@ -55,5 +58,17 @@ export default {
   text-align: center;
   margin-top: 15px;
   margin-bottom: 15px;
+}
+
+.local-slogan {
+  font-size: 28px;
+}
+
+.local-green {
+  color: #009B00;
+}
+
+.local-blue {
+  color: #00009B;
 }
 </style>
