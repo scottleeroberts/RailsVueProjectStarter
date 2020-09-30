@@ -2,7 +2,8 @@
 nav.navbar.is-fixed-top(role="navigation" aria-label="main navigation")
   .container
     .navbar-brand
-      RouterLink.navbar-item(to="/") Home
+      RouterLink.navbar-item(to="/")
+        img(alt="Vue logo" src="../assets/main-banner.png")
       a.navbar-burger.burger(role="button" aria-label="menu" aria-expanded="false" data-target="mainNavbar" @click="isOpen = !isOpen" v-bind:class="{'is-active': isOpen}")
         span(aria-hidden="true")
         span(aria-hidden="true")
