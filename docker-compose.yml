@@ -1,0 +1,35 @@
+version: '3'
+services:
+  db:
+    image: postgres:13
+    ports:
+      - "5432"
+    environment:
+      - 'POSTGRES_HOST_AUTH_METHOD=trust'
+  backend:
+    tty: true
+    stdin_open: true
+    build:
+      context: backend
+    command: /app/entrypoint.sh
+    volumes:
+      - ./backend:/app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      - 'BUNDLE_PATH=/app/bundle'
+      - 'GEM_HOME=/app/bundle'
+      - 'CORS_ORIGINS=*'
+      - 'DEVISE_JWT_SECRET_KEY=b27cd4ce3b64f2aece147a4a9ae95b7'
+  frontend:
+    tty: true
+    stdin_open: true
+    build:
+      context: frontend
+    command: /app/entrypoint.sh
+    volumes:
+      - ./frontend:/app
+    ports:
+      - "3000:3000"
