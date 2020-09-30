@@ -24,12 +24,9 @@ const router = new Router({
 
 router.beforeEach((to, _from, next) => {
   const isLoggedIn = localStorage.getItem('user')
-  const isGod = isLoggedIn ? JSON.parse(localStorage.getItem('user')).isGod : false
 
   if(to.matched.every(record => record.name !== 'login') && !isLoggedIn) {
     next('/login')
-  } else if(to.matched.some(record => record.path.startsWith('/admin')) && !isGod) {
-    next('/')
   } else {
     next()
   }
