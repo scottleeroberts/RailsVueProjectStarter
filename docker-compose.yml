@@ -22,7 +22,6 @@ services:
       - 'BUNDLE_PATH=/app/bundle'
       - 'GEM_HOME=/app/bundle'
       - 'CORS_ORIGINS=http://localhost:3000'
-      - 'DEVISE_JWT_SECRET_KEY=b27cd4ce3b64f2aece147a4a9ae95b7'
   frontend:
     tty: true
     stdin_open: true
