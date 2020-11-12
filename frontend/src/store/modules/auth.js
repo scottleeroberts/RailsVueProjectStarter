@@ -1,5 +1,7 @@
 import axios from '@/backend/axios'
 
+const sessionEndpoint = '/users/session'
+
 export default {
   namespaced: true,
   state: {
@@ -21,16 +23,22 @@ export default {
   },
   actions: {
     login({ commit }, credentials) {
-      return axios
-        .post('/users/sign_in', { user: credentials })
-        .then(({ data }) => {
-          commit('setUserData', { ...data, email: credentials.email })
-        })
+      return new Promise((resolve, reject) => {
+        axios
+          .post(sessionEndpoint, { session: credentials })
+          .then(response => {
+            commit('setUserData', response.data)
+            resolve()
+          })
+          .catch(() => {
+            reject()
+          })
+      })
     },
     logout({ commit }) {
       return axios
-        .delete('/users/sign_out')
-        .then(() => {
+        .delete(sessionEndpoint)
+        .finally(() => {
           commit('clearUserData')
         })
     },

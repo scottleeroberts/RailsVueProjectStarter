@@ -45,8 +45,8 @@ export default {
       .then(() => {
         this.$router.push('/')
       })
-      .catch(error => {
-        this.error = error.response.data.error
+      .catch(() => {
+        this.error = 'Invalid email/password'
       })
     },
   },

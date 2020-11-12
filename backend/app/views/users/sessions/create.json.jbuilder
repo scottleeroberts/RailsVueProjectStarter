@@ -1,3 +1,3 @@
 # frozen_string_literal: true
 
-json.token @token
+json.email @user.email
