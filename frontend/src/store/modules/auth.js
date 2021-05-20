@@ -4,8 +4,10 @@ const sessionEndpoint = '/users/session'
 
 export default {
   namespaced: true,
-  state: {
-    user: null,
+  state() {
+    return {
+      user: null,
+    }
   },
   getters: {
     email(state) {
