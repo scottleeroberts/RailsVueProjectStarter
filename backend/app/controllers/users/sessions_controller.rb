@@ -8,7 +8,12 @@ class Users::SessionsController < ApplicationController
     @user = authenticated_user
 
     if @user.present?
-      cookies.signed[:user_id] = { value: @user.id, expires: 2.weeks.from_now }
+      cookies.signed[:user_id] = {
+        value: @user.id,
+        expires: 2.weeks.from_now,
+        httponly: true,
+        secure: Rails.env.production?
+      }
     else
       head :unauthorized
     end

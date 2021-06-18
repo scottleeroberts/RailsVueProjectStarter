@@ -4,8 +4,10 @@ const sessionEndpoint = '/users/session'
 
 export default {
   namespaced: true,
-  state: {
-    user: null,
+  state() {
+    return {
+      user: null,
+    }
   },
   getters: {
     email(state) {
@@ -47,7 +49,6 @@ export default {
     setUserData(state, userData) {
       state.user = userData
       localStorage.setItem('user', JSON.stringify(userData))
-      axios.defaults.headers.common['Authorization'] = `Bearer ${userData.token}`
     },
     clearUserData() {
       localStorage.removeItem('user')
